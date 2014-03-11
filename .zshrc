@@ -13,6 +13,15 @@ export VISUAL="$EDITOR"
  
 # Local aliases stored separately for easy reloading:
 . ~/.aliases
+
+# If I am using vi keys, I want to know what mode I'm currently using.
+# zle-keymap-select is executed every time KEYMAP changes.
+function zle-keymap-select {
+    VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
+    zle reset-prompt
+}
+
+zle -N zle-keymap-select
  
 # If running interactively:
 if [ "$PS1" ]; then
