@@ -10,7 +10,7 @@ export LANG=en_US.UTF-8
 # Preferred utilities:
 export EDITOR=`which vim`
 export VISUAL="$EDITOR"
- 
+
 # Local aliases stored separately for easy reloading:
 . ~/.aliases
 
@@ -22,13 +22,14 @@ function zle-keymap-select {
 }
 
 zle -N zle-keymap-select
- 
+
 # If running interactively:
 if [ "$PS1" ]; then
- 
+
 	# Colour stuff:
 	eval `dircolors -b`
-	alias ls='ls --color=auto --classify --ignore=",,*"'
+#	alias ls='ls --color=auto --classify --ignore=",,*"'
+	alias ls='gls --color=auto --group-directories-first -l'
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
 	alias egrep='egrep --color=auto'
@@ -45,17 +46,17 @@ function chpwd {
   esac
 }
 
-## Use this when your repository configured 
+## Use this when your repository configured
 ## Needed for the prompt
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*' formats " (%b)%u%c"
 zstyle ':vcs_info:git*' unstagedstr '*'
 zstyle ':vcs_info:git*' stagedstr '+'
 zstyle ':vcs_info:*' check-for-changes true
- 
+
 function precmd {
     psvar=()
- 
+
     vcs_info
     if [ -n $vcs_info_msg_0_ ]
     then
@@ -66,15 +67,15 @@ function precmd {
 }
 
 
- 
+
 # Prompt Madness
 # Allows prompt to update variables from the vcs_info precmd
 export PROMPT="%B%F{green}%n@%m%f:%F{blue}%~%f%b%F{yellow}%1v%f%B%#%b "
- 
+
 # whois options:
 #   Skip license crap.
 #export WHOIS_HIDE=1
- 
+
 # Keybindings:
 #   Emacs keybinding mode for bash-like behaviour.
 bindkey -A emacs main
@@ -87,7 +88,7 @@ bindkey '^[[3~' delete-char            # Del
 bindkey '^[[5~' vi-backward-blank-word # Page Up
 bindkey '^[[6~' vi-forward-blank-word  # Page Down
 bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line 
+bindkey '^[[F' end-of-line
 # Options:
 #   Don't HUP me bro
 setopt nohup
@@ -103,12 +104,12 @@ setopt noequals
 setopt printexitvalue
 #   Correct when I wrong a command
 setopt correct
-#   Message when I wrong a command 
+#   Message when I wrong a command
 autoload -U colors && colors
 export SPROMPT="Correct $fg[red]%R$reset_color to $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
 #   Notify me if something takes awhile.
 REPORTTIME=1
- 
+
 # History options:
 #   Lines to keep, lines to save, where to save...
 HISTSIZE=10000
@@ -120,7 +121,7 @@ setopt incappendhistory
 setopt histignoredups
 #   Ignore lines that begin with a space
 setopt histignorespace
- 
+
 # Remove some chars from 'words' (e.g. alt-backspace) that I like.
 # Essentially, add them as word delimiters.
 # Currently:	.  /
