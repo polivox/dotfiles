@@ -140,3 +140,8 @@ zstyle :compinstall filename '/Users/Rafael/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
